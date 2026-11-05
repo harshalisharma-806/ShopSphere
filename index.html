@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ShopSphere – Shop Everything You Love</title>
+<meta name="description" content="ShopSphere – an Amazon-inspired demo e-commerce website built with HTML, CSS and vanilla JavaScript.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="header-top">
+    <button class="icon-btn menu-toggle" data-act="drawer" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+    <a href="#/" class="logo" aria-label="ShopSphere home"><span class="logo-orb"><i class="fa-solid fa-bag-shopping"></i></span>shop<b>sphere</b><small>.in</small></a>
+
+    <button class="hbtn loc" data-act="location" aria-label="Choose delivery location">
+      <i class="fa-solid fa-location-dot"></i>
+      <span><small>Deliver to</small><b id="locText">Select pincode</b></span>
+    </button>
+
+    <form class="search" id="searchForm" role="search">
+      <select id="searchCat" aria-label="Search category">
+        <option value="">All</option>
+      </select>
+      <input id="searchInput" type="search" placeholder="Search ShopSphere" autocomplete="off" aria-label="Search products">
+      <button type="submit" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </form>
+
+    <div id="acctArea" class="acct-wrap"></div>
+    <a href="#/orders" class="hbtn orders-link"><small>Returns</small><b>& Orders</b></a>
+    <a href="#/wishlist" class="hbtn wish-link" aria-label="Wishlist"><i class="fa-regular fa-heart"></i><span class="count" id="wishCount">0</span></a>
+    <a href="#/cart" class="hbtn cart-link" aria-label="Cart"><i class="fa-solid fa-cart-shopping"></i><span class="count" id="cartCount">0</span><b>Cart</b></a>
+  </div>
+
+  <nav class="catnav" aria-label="Categories">
+    <button class="nav-all" data-act="drawer"><i class="fa-solid fa-bars"></i> All</button>
+    <a href="#/search?deals=1">Today's Deals</a>
+    <span id="navCats" class="nav-cats"></span>
+    <a href="#/contact">Customer Service</a>
+    <a href="#/about">About Us</a>
+  </nav>
+</header>
+
+<div class="drawer-bg" data-act="drawer"></div>
+<aside class="drawer" id="drawer" aria-label="Menu">
+  <div class="drawer-head"><i class="fa-solid fa-circle-user"></i> <span id="drawerUser">Hello, sign in</span>
+    <button class="icon-btn" data-act="drawer" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button></div>
+  <h4>Shop by Category</h4>
+  <div id="drawerCats"></div>
+  <h4>Help &amp; Settings</h4>
+  <a href="#/orders">Your Orders</a><a href="#/wishlist">Your Wishlist</a><a href="#/login">Sign in</a><a href="#/contact">Customer Service</a>
+</aside>
+
+<main id="app" tabindex="-1"></main>
+
+<footer class="footer">
+  <a class="to-top" href="#" data-act="top">Back to top</a>
+  <div class="footer-grid">
+    <div>
+      <h5>About Us</h5>
+      <p>ShopSphere is a demo storefront that brings you a delightful, fast and trusted shopping experience across electronics, fashion, home, books and more.</p>
+      <p class="muted">Built with HTML5, CSS3 &amp; vanilla JavaScript.</p>
+      <div class="social"><a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a><a href="#" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a><a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a><a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a></div>
+    </div>
+    <div><h5>Get to Know Us</h5><a href="#/about">About ShopSphere</a><a href="#/about">Careers</a><a href="#/about">Press Releases</a><a href="#/about">Sustainability</a></div>
+    <div><h5>Let Us Help You</h5><a href="#/login">Your Account</a><a href="#/orders">Your Orders</a><a href="#/wishlist">Wishlist</a><a href="#/cart">Shopping Cart</a></div>
+    <div id="contact-us"><h5>Contact Us</h5>
+      <p><i class="fa-solid fa-location-dot"></i> 42 Sphere Tower, MG Road, Bengaluru 560001</p>
+      <p><i class="fa-solid fa-phone"></i> 1800-123-4567 (toll free)</p>
+      <p><i class="fa-solid fa-envelope"></i> support@shopsphere.demo</p>
+      <a class="btn btn-ghost sm" href="#/contact">Write to us</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <a href="#/" class="logo small"><span class="logo-orb"><i class="fa-solid fa-bag-shopping"></i></span>shop<b>sphere</b></a>
+    <p>© 2026 ShopSphere. Demo project – not affiliated with any real retailer. No real payments are processed.</p>
+  </div>
+</footer>
+
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
+<dialog id="locDlg">
+  <form method="dialog" id="locForm">
+    <h3>Choose your location</h3>
+    <p class="muted">Enter a 6-digit pincode to see delivery options.</p>
+    <input id="locInput" inputmode="numeric" maxlength="6" placeholder="e.g. 560001" autocomplete="postal-code">
+    <p class="err" id="locErr"></p>
+    <div class="row"><button type="button" class="btn btn-ghost" id="locCancel">Cancel</button><button class="btn btn-primary" value="ok">Apply</button></div>
+  </form>
+</dialog>
+
+<script src="script.js"></script>
+</body>
+</html>
